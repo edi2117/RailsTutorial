@@ -4,7 +4,6 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
   
   def setup
     ActionMailer::Base.deliveries.clear
-    
   end
   
   test "invalid signup information" do
