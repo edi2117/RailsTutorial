@@ -8,5 +8,6 @@ development: &default
   host: db
 
 test:
-  <<: *default
-  database: myapp_test
+  adapter: sqlite3
+  database: db/test.sqlite3
+  host: 127.0.0.1
