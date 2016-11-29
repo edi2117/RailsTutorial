@@ -5,11 +5,23 @@ services:
     ports:
       - "5432:5432"
   web:
-    build: .
     command: bundle exec rails s -p 3000 -b '0.0.0.0'
     volumes:
       - .:/myapp
     ports:
       - "3000:3000"
+    depends_on:
+      - migration
+    links:
+      - db
+    image: 10.100.198.200:5000/rails-ms
+  migration:
+    build: .
+    image: 10.100.198.200:5000/rails-ms
+    command: bin/rake db:migrate RAILS_ENV=development
+    volumes: 
+      - .:/myapp
+    links:
+      - db
     depends_on:
       - db
