@@ -23,3 +23,7 @@ services:
       - db
     depends_on:
       - db
+  preTests:
+    image: 10.100.198.200:5000/rails-ms
+    environment:
+      - TEST_TYPE=pre
