@@ -1,3 +1,13 @@
+#!/usr/bin/env puma
+
+environment ENV.fetch 'RAILS_ENV', 'production'
+
+daemonize false
+
+threads 0, 16
+
+bind 'tcp://0.0.0.0:8080'
+
 workers Integer(ENV['WEB_CONCURRENCY'] || 2)
 threads_count = Integer(ENV['MAX_THREADS'] || 5)
 threads threads_count, threads_count
