@@ -10,12 +10,10 @@ require 'rake/testtask'
    Rake::TestTask.new do |t|
       t.libs = ["lib", "test"]
       t.name = "test:predeployment"
-      t.warning = true
       t.test_files = FileList['test/controllers/*.rb','test/helpers/*.rb','test/mailers/*.rb','test/models/*.rb']
     end
    Rake::TestTask.new do |t|
       t.libs = ["lib", "test"]
       t.name = "test:postdeployment"
-      t.warning = true
       t.test_files = FileList['spec/integration/*.rb']
     end
