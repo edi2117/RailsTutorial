@@ -31,7 +31,11 @@ services:
     image: 10.100.198.200:5000/rails-ms-tests
     environment:
       - TEST_TYPE=pre
+    depends_on:
+      - migration
   postTests:
     image: 10.100.198.200:5000/rails-ms-tests
     environment:
       - TEST_TYPE=post
+    depends_on:
+      - migration
