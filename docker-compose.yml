@@ -32,10 +32,24 @@ services:
     environment:
       - TEST_TYPE=pre
     depends_on:
-      - migration
+      - migration_tests
+    links:
+      - db
   postTests:
     image: 10.100.198.200:5000/rails-ms-tests
     environment:
       - TEST_TYPE=post
     depends_on:
-      - migration
+      - migration_tests
+    links:
+      - db
+  migration_tests:
+    build: .
+    image: 10.100.198.200:5000/rails-ms
+    command: bin/rake db:migrate RAILS_ENV=test
+    environment:
+      - SERVICE_NAME=rails-ms
+    links:
+      - db
+    depends_on:
+      - db
