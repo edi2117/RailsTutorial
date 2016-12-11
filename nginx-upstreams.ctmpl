@@ -1,0 +1,5 @@
+upstream rails-ms {
+    {{range service "rails-ms" "any"}}
+    server {{.Address}}:{{.Port}};
+    {{end}}
+}
