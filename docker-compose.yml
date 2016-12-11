@@ -24,6 +24,10 @@ services:
     depends_on:
       - db
   preTests:
-    image: 10.100.198.200:5000/rails-ms
+    image: 10.100.198.200:5000/rails-ms-tests
     environment:
       - TEST_TYPE=pre
+  postTests:
+    image: 10.100.198.200:5000/rails-ms-tests
+    environment:
+      - TEST_TYPE=post
