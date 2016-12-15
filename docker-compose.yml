@@ -4,19 +4,35 @@ services:
     image: postgres
     ports:
       - "5432:5432"
-  web:
+  base:
     command: bundle exec puma -C config/puma.rb
     ports:
       - 8080
-   # volumes:
-    #  - $PWD:/myapp
+    image: 10.100.198.200:5000/rails-ms
+    environment:
+      - SERVICE_NAME=rails-ms
+  web:
+    extends: base
     depends_on:
       - migration
     links:
       - db
-    image: 10.100.198.200:5000/rails-ms
+  web-blue:
+    extends: base
+    depends_on:
+      - migration
+    links:
+      - db
     environment:
-      - SERVICE_NAME=rails-ms
+      - SERVICE_NAME=rails-ms-blue
+  web-green:
+    extends: base
+    depends_on:
+      - migration
+    links:
+      - db
+    environment:
+      - SERVICE_NAME=rails-ms-green
   migration:
     build: .
     image: 10.100.198.200:5000/rails-ms
