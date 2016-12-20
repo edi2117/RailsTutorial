@@ -22,29 +22,15 @@ services:
   web-blue:
     extends: base
     depends_on:
-      - migration
-    links:
       - db
     environment:
       - SERVICE_NAME=rails-ms-blue
   web-green:
     extends: base
     depends_on:
-      - migration
-    links:
       - db
     environment:
       - SERVICE_NAME=rails-ms-green
-  migration:
-    build: .
-    image: 10.100.198.200:5000/rails-ms:latest
-    command: bin/rake db:migrate RAILS_ENV=development
-    environment:
-      - SERVICE_NAME=rails-ms
-    depends_on:
-      - db
-    networks:
-      - rails-ms
   preTests:
     command: /myapp/run_tests.sh
     image: 10.100.198.200:5000/rails-ms-tests
