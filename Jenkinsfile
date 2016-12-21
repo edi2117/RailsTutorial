@@ -7,11 +7,9 @@ node("cd") {
     def swarmPlaybook = "swarm.yml"
     def proxyPlaybook = "swarm-proxy.yml"
     def instances = 1
-    
 
     def flow = load "/data/scripts/workflow-util.groovy"
 
-    export DOCKER_HOST="tcp://10.100.192.200:2375"
     git url: "https://github.com/nicksc423/RailsTutorial.git"
     flow.provision(swarmPlaybook)
     flow.provision(proxyPlaybook)
