@@ -13,12 +13,12 @@ services:
     image: 10.100.198.200:5000/rails-ms:latest
     environment:
       - SERVICE_NAME=rails-ms
+    networks:
+      - rails-ms
   web:
     extends: base
     depends_on: 
       - db
-    networks:
-      - rails-ms
   web-blue:
     extends: base
     depends_on:
