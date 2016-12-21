@@ -31,16 +31,6 @@ services:
       - db
     environment:
       - SERVICE_NAME=rails-ms-green
-  preTests:
-    command: /myapp/run_tests.sh
-    image: 10.100.198.200:5000/rails-ms-tests
-    environment:
-      - TEST_TYPE=pre
-  postTests:
-    command: /myapp/run_tests.sh
-    image: 10.100.198.200:5000/rails-ms-tests
-    environment:
-      - TEST_TYPE=post
 networks:
   rails-ms:
     driver: overlay
