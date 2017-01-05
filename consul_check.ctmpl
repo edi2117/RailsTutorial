@@ -1,0 +1,16 @@
+{
+  "service": {
+    "name": "rails-ms",
+    "tags": ["service"],
+    "port": 80,
+    "address": "{{key "proxy/ip"}}",
+    "checks": [{
+      "id": "api",
+      "name": "HTTP on port 80",
+      "http": "http://{{key "proxy/ip"}}",
+      "interval": "10s",
+      "timeout": "1s",
+      "status": "passing"
+    }]
+  }
+}
